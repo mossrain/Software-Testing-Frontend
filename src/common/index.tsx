@@ -14,19 +14,19 @@ interface CommonProps {
 
 export default function Common(props:CommonProps) {
    
-    if (props.type == "万年历问题") 
+    if (props.type === "万年历问题") 
         return <Calendar/>
-    else if (props.type == "电脑销售系统")
+    else if (props.type === "电脑销售系统")
         return <Computer/>
-    else if (props.type == "ATM机")
+    else if (props.type === "ATM机")
         return <Atm/>
-    else if (props.type == "电信收费问题")
+    else if (props.type === "电信收费问题")
         return <Telecom/>
-    else if (props.type == "销售系统白盒测试")
+    else if (props.type === "销售系统白盒测试")
         return <Test/>
-    else if (props.type == "程序图")
+    else if (props.type === "程序图")
         return <Program/>
-    else if (props.type == "三角形问题")
+    else if (props.type === "三角形问题")
         return <Triangle/>
     else
         return <HomePage/>
