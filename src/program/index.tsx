@@ -64,7 +64,7 @@ export default function Program() {
     return (
         <div className={classes.root}>
             <Grid container spacing={1} className={classes.paperContainer}>
-                <Grid item xs={5}>
+                <Grid item xs={12}>
                     <Paper elevation={3} className={classes.paper}>
                         <Typography variant="h5" color='primary'>题目描述</Typography>
                         <br></br>
@@ -77,8 +77,8 @@ export default function Program() {
                             <br />
                             代码内容如下
                             <br />
-                            <br />
-                        </Typography><br />
+                        </Typography>
+                        <br />
                         <Typography>
                             <SyntaxHighlighter language="cpp" style={solarizedlight}>
                                 {codeString}
@@ -87,11 +87,18 @@ export default function Program() {
                         <br />
                     </Paper >
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item xs={6}>
                     <Paper elevation={3} className={classes.paper} >
-                        <Typography variant="h5" color='primary'>程序流程图如下</Typography>
+                        <Typography variant="h5" color='primary'>program diagram</Typography>
                         <br />
                         <img src='testPic/program.png' alt="程序流程图" style={{ maxWidth: '100%', height: 'auto' }}></img>
+                    </Paper >
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper elevation={3} className={classes.paper} >
+                        <Typography variant="h5" color='primary'>control flow graph</Typography>
+                        <br />
+                        <img src='testPic/control.png' alt="控制流程图" style={{ maxWidth: '100%', height: 'auto' }}></img>
                     </Paper >
                 </Grid>
             </Grid>

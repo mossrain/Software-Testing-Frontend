@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 
-interface EchartsTestProps {}
+interface EchartsTestProps {
+  caseType: string;
+  passedCases: number;
+  failedCases: number;
+}
 
-const EchartsTest: React.FC<EchartsTestProps> = () => {
+const EchartsTest: React.FC<EchartsTestProps> = ({ caseType, passedCases, failedCases }) =>  {
   const [main, setMain] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -11,8 +15,8 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
       const myChart = echarts.init(main);
       const option: echarts.EChartOption = {
         title: {
-          text: '某站点用户访问来源',
-          subtext: '纯属虚构',
+          text: '用例测试结果',
+          subtext: caseType,
           left: 'center',
         },
         tooltip: {
@@ -22,20 +26,17 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+          data: ['用例通过', '用例不通过'],
         },
         series: [
           {
-            name: '访问来源',
+            name: '测试结果',
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-              { value: 335, name: '直接访问' },
-              { value: 310, name: '邮件营销' },
-              { value: 234, name: '联盟广告' },
-              { value: 135, name: '视频广告' },
-              { value: 1548, name: '搜索引擎' },
+              { value: passedCases, name: '通过用例' },
+              { value: failedCases, name: '不通过用例' },
             ],
             emphasis: {
               itemStyle: {
@@ -49,7 +50,7 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
       };
       myChart.setOption(option);
     }
-  }, [main]);
+  }, [main, caseType, passedCases, failedCases]);
 
   return <div style={{ height: '500px', width: '600px' }} id="main" ref={(ref) => setMain(ref)} />;
 };

@@ -14,16 +14,15 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(col1: number, col2: number, col3: number, col4: string) {
-  return { col1, col2, col3, col4 };
+function createData(col1: number, col2: number, col3: number, col4: string, col5: string) {
+  return { col1, col2, col3, col4, col5 };
 }
 
 const rows = [
-  createData(1, -1, -1, '1.0%'),
-  createData(1, -1, -1, '1.0%'),
-  createData(1, -1, -1, '1.0%'),
-  createData(1, -1, -1, '1.0%'),
-  createData(1, -1, -1, '1.0%'),
+  createData(1, 300, 5, '90%','BEGH'),
+  createData(2, 300, 5, '50%','BFI'),
+  createData(3, 100, 5, '90%','ACGH'),
+  createData(4, 100, 5, '50%','ADGH'),
 ];
 
 export default function CaseTable() {
@@ -34,10 +33,11 @@ export default function CaseTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>序号</TableCell>
-            <TableCell >通话分钟</TableCell>
-            <TableCell >不按时缴费次数</TableCell>
-            <TableCell >预期输出</TableCell>
+            <TableCell>测试编号</TableCell>
+            <TableCell >年销售额</TableCell>
+            <TableCell >请假天数</TableCell>
+            <TableCell >现金到账</TableCell>
+            <TableCell >所走路径</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -46,7 +46,8 @@ export default function CaseTable() {
               <TableCell > {row.col1}</TableCell>
               <TableCell >{row.col2}</TableCell>
               <TableCell >{row.col3}</TableCell>
-                <TableCell >{row.col4}</TableCell>
+              <TableCell >{row.col4}</TableCell>
+              <TableCell >{row.col5}</TableCell>
             </TableRow>
           ))}
         </TableBody>
