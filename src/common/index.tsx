@@ -2,7 +2,7 @@ import Calendar from "../calendar";
 import Computer from "../computer";
 import Atm from "../atm";
 import Telecom from "../telecom";
-import Test from "../test";
+import Commission from "../commission";
 import Program from "../program";
 import Triangle from "../triangle";
 import HomePage from "../homepage";
@@ -23,7 +23,7 @@ export default function Common(props:CommonProps) {
     else if (props.type === "电信收费问题")
         return <Telecom/>
     else if (props.type === "销售系统白盒测试")
-        return <Test/>
+        return <Commission/>
     else if (props.type === "程序图")
         return <Program/>
     else if (props.type === "三角形问题")
