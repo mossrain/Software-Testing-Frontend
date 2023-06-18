@@ -4,8 +4,13 @@ import Paper  from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { InputLabel, NativeSelect, Typography } from '@material-ui/core';
 import BasicTable from './des_table';
-import CaseTable from './case_table';
+import CaseTable from './djl_table';
+import JcbTable from './jcb_table';
 import EchartsTest from './echarts_test';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import Jcb from './jcb';
+import Bjz from './bjz';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -15,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     //   textAlign: 'center',
       color: theme.palette.text.secondary,
-      minHeight: 710,
+      minHeight: 780,
     },
   }),
 );
@@ -24,11 +29,40 @@ const useStyles = makeStyles((theme: Theme) =>
 function UseCase(props: { value: string }) {
     switch (props.value) {
         case "1":
-            return <div><br/><Typography>边界值测试用例</Typography><CaseTable/></div>;
+            return <div><br/>
+            <Typography  style={{ fontWeight: 'bold' }}>边界值测试</Typography>
+            <Typography>对于通话时长的总区间和每个分区间进行边界值测试：-1, 0, 1, 150, 20000, 44639, 44640, 44641</Typography>
+            <Typography>未按时缴费次数：-1, 0, 1, 5, 10, 11, 12</Typography>
+            <br/>
+            <Bjz/>
+            </div>;
         case "2":
-            return <div><br/><Typography>等价类测试用例</Typography><CaseTable/></div>;
+            return <div><br/><Typography  style={{ fontWeight: 'bold' }}>等价类测试</Typography>
+            <Typography>
+            通话分钟数：
+            <br />
+            1. 有效等价类：[0,60], (60,120], (120,180], (180,300], (300,44640]
+            <br />
+            2. 无效等价类：{'{-1}'}, {'{44641}'}
+            <br />
+            未缴费次数：
+            <br />
+            1. 有效等价类：{'{0,1}'}, {'{2}'}, {'{3}'}, {'{4,5,6}'}, {'{7,8,9,10,11}'}
+            <br />
+            2. 无效等价类：{'{-1,12}'}
+            <br/>
+            本题我们基于强健壮等价类进行划分
+          </Typography>
+            
+            <CaseTable/></div>;
         case "3":
-            return <div><br/><Typography>决策表测试用例</Typography><CaseTable/></div>;
+            return <div><br/><Typography style={{ fontWeight: 'bold' }}>决策表</Typography>
+            <Jcb/>
+            <br/>
+            <Typography style={{ fontWeight: 'bold' }}>测试用例</Typography>
+            <JcbTable/>
+            
+            </div>;
         default:
             return <div><br/><Typography>请选择测试方法</Typography></div>;
     }
@@ -39,6 +73,36 @@ export default function Telecom() {
   const classes = useStyles();
   const [val, setVal] = React.useState("1");
 
+  const code = `function telecomSystem(callingTime: number, count: number): string {
+    if (callingTime < 0 || callingTime > 31 * 24 * 60) {
+        return "通话时长数值越界"
+    }
+    if (count < 0 || count > 11) {
+        return "未按时缴费次数越界"
+    }
+
+    let maxNum: number[] = [1, 2, 3, 3, 6]
+    let level: number = getLevel(callingTime)
+    if (count <= maxNum[level - 1]) {
+        return String(Math.round((25 + 0.15 * callingTime * (1 - (level + 1) * 0.005)) * 100) / 100)
+    } else {
+        return String(Math.round((25 + 0.15 * callingTime) * 100) / 100)
+    }
+}
+
+function getLevel(time: number): number {
+    if (time > 0 && time <= 60)
+        return 1
+    else if (time > 60 && time <= 120)
+        return 2
+    else if (time > 120 && time <= 180)
+        return 3
+    else if (time > 180 && time <= 300)
+        return 4
+    else
+        return 5
+}`
+
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setVal(event.target.value as string);
     };
@@ -46,7 +110,7 @@ export default function Telecom() {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
           <Paper elevation={3} className={classes.Paper }>
             <Typography  variant="h6" color='primary'>题目描述</Typography>
             <br></br>
@@ -66,7 +130,7 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
             <Typography>用边界值，等价类和决策表设计测试用例，根据三种方法，最后设计出最优的一组测试用例集</Typography>
           </Paper >
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <Paper elevation={3} className={classes.Paper } >
             
             <Typography  variant="h6" color='primary'>测试用例</Typography>
@@ -85,7 +149,10 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
           <Paper elevation={3} className={classes.Paper }>
             <Typography  variant="h6" color='primary'>测试代码</Typography>
             <br/>
-            <Typography>TODO: 找一个代码块组件贴在这里</Typography>
+            {/* <Typography>TODO: 找一个代码块组件贴在这里</Typography> */}
+            <SyntaxHighlighter language="cpp" style={solarizedlight}>
+                                {code}
+                            </SyntaxHighlighter>
           </Paper >
         </Grid>
         <Grid item xs={6}>
