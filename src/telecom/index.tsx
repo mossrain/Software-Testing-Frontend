@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper  from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { InputLabel, NativeSelect, Typography } from '@material-ui/core';
+import { Button, InputLabel, NativeSelect, Typography } from '@material-ui/core';
 import BasicTable from './des_table';
 import CaseTable from './djl_table';
 import JcbTable from './jcb_table';
@@ -11,6 +11,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Jcb from './jcb';
 import Bjz from './bjz';
+import DataTable from './data_table';
+// import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -34,7 +36,8 @@ function UseCase(props: { value: string }) {
             <Typography>对于通话时长的总区间和每个分区间进行边界值测试：-1, 0, 1, 150, 20000, 44639, 44640, 44641</Typography>
             <Typography>未按时缴费次数：-1, 0, 1, 5, 10, 11, 12</Typography>
             <br/>
-            <Bjz/>
+            {/* <Bjz/> */}
+            <DataTable/>
             </div>;
         case "2":
             return <div><br/><Typography  style={{ fontWeight: 'bold' }}>等价类测试</Typography>
@@ -72,6 +75,7 @@ function UseCase(props: { value: string }) {
 export default function Telecom() {
   const classes = useStyles();
   const [val, setVal] = React.useState("1");
+  const [isVisible, setIsVisible] = React.useState(false);
 
   const code = `function telecomSystem(callingTime: number, count: number): string {
     if (callingTime < 0 || callingTime > 31 * 24 * 60) {
@@ -107,6 +111,13 @@ function getLevel(time: number): number {
     setVal(event.target.value as string);
     };
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        event.preventDefault();
+        alert("测试完成！请查看测试结果");
+        setIsVisible(true);
+        // <Alert onClose={() => {}}>This is a success alert — check it out!</Alert>
+    };
+
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
@@ -136,12 +147,22 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
             <Typography  variant="h6" color='primary'>测试用例</Typography>
 <br/>
             <InputLabel htmlFor="select"></InputLabel>
-            <NativeSelect id="select" fullWidth value={val} onChange={handleChange}>
+            <Grid container spacing={1}>
+            <Grid item xs={6}>
+            <NativeSelect id="select"  value={val} fullWidth onChange={handleChange}>
             <option value="1">边界值</option>
             <option value="2">等价类</option>
             <option value="3">决策表</option>
            
             </NativeSelect>
+            </Grid>
+            <Grid item xs={6}>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <Button variant="outlined" color="primary" href="" onClick={handleClick}>
+                开始测试
+              </Button>
+            </Grid>
+            </Grid>
              <UseCase value={val} />
           </Paper >
         </Grid>
@@ -150,7 +171,7 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
             <Typography  variant="h6" color='primary'>测试代码</Typography>
             <br/>
             {/* <Typography>TODO: 找一个代码块组件贴在这里</Typography> */}
-            <SyntaxHighlighter language="cpp" style={solarizedlight}>
+            <SyntaxHighlighter language="typescript" style={solarizedlight}>
                                 {code}
                             </SyntaxHighlighter>
           </Paper >
@@ -158,7 +179,8 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
         <Grid item xs={6}>
           <Paper elevation={3} className={classes.Paper }>
             <Typography  variant="h6" color='primary'>测试结果</Typography>
-            <EchartsTest/>
+            {isVisible&&<EchartsTest value={val}/>}
+            {!isVisible&&<Typography><br/>请先进行测试</Typography>}
           </Paper >
         </Grid>
       </Grid>

@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 
-interface EchartsTestProps {}
+interface EchartsTestProps {
+  value: string;
+}
 
-const EchartsTest: React.FC<EchartsTestProps> = () => {
+const EchartsTest: React.FC<EchartsTestProps> = (props) => {
   const [main, setMain] = useState<HTMLDivElement | null>(null);
+
+  const [text, setText] = useState<string>("");
+  const [num, setNum] = useState<number>(0);
+
+  if (props.value === "1" && text === "") {
+    setText("边界值测试");
+    setNum(37);
+  } else if(props.value === "2" && text === "") {
+    setText("等价类测试");
+    setNum(49);
+  }
+  else if(props.value === "3" && text === "") {
+    setText("决策表测试");
+    setNum(10);
+  }
+
+
 
   useEffect(() => {
     if (main) {
@@ -12,7 +31,7 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
       const option: echarts.EChartOption = {
         title: {
           text: '用例测试结果',
-          subtext: '边界类+等价类+决策表测试结果',
+          subtext: text+'测试结果',
           left: 'center',
         },
         tooltip: {
@@ -31,7 +50,7 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-              { value: 59, name: '通过用例' },
+              { value: num, name: '通过用例' },
               // { value: 0, name: '邮件营销' },
             ],
             emphasis: {

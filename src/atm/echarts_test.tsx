@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 
-interface EchartsTestProps {}
+interface EchartsTestProps {
+  value: string;
+}
 
 const EchartsTest: React.FC<EchartsTestProps> = () => {
   const [main, setMain] = useState<HTMLDivElement | null>(null);
@@ -31,7 +33,7 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-              { value: 59, name: '通过用例' },
+              { value: 8, name: '通过用例' },
               // { value: 0, name: '邮件营销' },
             ],
             emphasis: {

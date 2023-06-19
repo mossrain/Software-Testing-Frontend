@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper  from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { InputLabel, NativeSelect, Typography } from '@material-ui/core';
+import { Button, InputLabel, NativeSelect, Typography } from '@material-ui/core';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -71,6 +71,12 @@ export default function Telecom() {
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setVal(event.target.value as string);
     };
+    const [isVisible, setIsVisible] = React.useState(false);
+
+    const handleClick = () => {
+        alert("测试完成！请查看测试结果");
+        setIsVisible(true);
+    };
 
   return (
     <div className={classes.root}>
@@ -130,6 +136,10 @@ export default function Telecom() {
               <Grid container spacing={2}>
                 <Grid item xs={4}>
             <UseCaseTable1/>
+            <br/>
+            <Button variant="outlined" color="primary" onClick={handleClick}>
+              开始测试
+            </Button>
             </Grid>
             <Grid item xs={4}>
             <UseCaseTable2/></Grid>
@@ -154,7 +164,8 @@ export default function Telecom() {
             <Typography  variant="h6" color='primary'>测试结果</Typography>
             <br/>
             <Typography>
-              <EchartsTest/>
+              {isVisible&&<EchartsTest value={val}/>}
+              {!isVisible&&<Typography><br/><br/>请先进行测试</Typography>}
           </Typography>
           </Paper >
           </Grid>
