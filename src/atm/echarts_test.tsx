@@ -11,8 +11,8 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
       const myChart = echarts.init(main);
       const option: echarts.EChartOption = {
         title: {
-          text: '某站点用户访问来源',
-          subtext: '纯属虚构',
+          text: '用例测试结果',
+          subtext: 'ATM测试结果',
           left: 'center',
         },
         tooltip: {
@@ -22,20 +22,17 @@ const EchartsTest: React.FC<EchartsTestProps> = () => {
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+          data: ['通过用例', '失败用例'],
         },
         series: [
           {
-            name: '访问来源',
+            name: '通过用例',
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
             data: [
-              { value: 335, name: '直接访问' },
-              { value: 310, name: '邮件营销' },
-              { value: 234, name: '联盟广告' },
-              { value: 135, name: '视频广告' },
-              { value: 1548, name: '搜索引擎' },
+              { value: 59, name: '通过用例' },
+              // { value: 0, name: '邮件营销' },
             ],
             emphasis: {
               itemStyle: {
