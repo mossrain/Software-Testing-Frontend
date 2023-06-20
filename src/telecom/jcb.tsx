@@ -20,7 +20,7 @@ export default function Jcb() {
             <TableCell>10</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>minute</TableCell>
+            <TableCell>m</TableCell>
             <TableCell>m1</TableCell>
             <TableCell>m1</TableCell>
             <TableCell>m2</TableCell>
@@ -33,7 +33,7 @@ export default function Jcb() {
             <TableCell>m5</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>count</TableCell>
+            <TableCell>c</TableCell>
             <TableCell>c1</TableCell>
             <TableCell>c2~c5</TableCell>
             <TableCell>c1,c2</TableCell>

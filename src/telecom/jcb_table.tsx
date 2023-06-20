@@ -7,11 +7,11 @@ export default function JcbTable() {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>编号</TableCell>
-            <TableCell>minute</TableCell>
-            <TableCell>count</TableCell>
-            <TableCell>discount(预期折扣)</TableCell>
-            <TableCell>output(预期输出)</TableCell>
+            <TableCell>序号</TableCell>
+            <TableCell>通话分钟</TableCell>
+            <TableCell>不按时缴费次数</TableCell>
+            <TableCell>预期折扣</TableCell>
+            <TableCell>预期输出</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
