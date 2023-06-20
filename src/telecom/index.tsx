@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
     //   textAlign: 'center',
       color: theme.palette.text.secondary,
-      minHeight: 780,
+      minHeight: 800,
     },
   }),
 );
@@ -60,6 +60,21 @@ function UseCase(props: { value: string }) {
             <CaseTable/></div>;
         case "3":
             return <div><br/><Typography style={{ fontWeight: 'bold' }}>决策表</Typography>
+            <Typography>条件桩：通话分钟数，未按时缴费次数<br/>
+            条件项：<br/>通话分钟数——
+            m1 = (0,60],
+            m2 = (60,120],
+            m3 = (120,180],
+            m4 = (180,300],
+            m5 = (300, 44640]<br/>
+            未按时缴费次数——
+            c1 = {"{0,1}"},
+            c2 = {"{2}"},
+            c3 = {"{3}"},
+            c4 = {"{4,5,6}"},
+            c5 = {"{7,8,9,10,11}"}<br/>
+            动作桩：有折扣/无折扣<br/>
+            动作项：应采取的动作（使用√标识）<br/></Typography>
             <Jcb/>
             <br/>
             <Typography style={{ fontWeight: 'bold' }}>测试用例</Typography>
@@ -122,7 +137,7 @@ function getLevel(time: number): number {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Paper elevation={3} className={classes.Paper }>
             <Typography  variant="h6" color='primary'>题目描述</Typography>
             <br></br>
@@ -142,7 +157,7 @@ D.通话时间和折扣比例及未按时缴费次数的关系为：
             <Typography>用边界值，等价类和决策表设计测试用例，根据三种方法，最后设计出最优的一组测试用例集</Typography>
           </Paper >
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={7}>
           <Paper elevation={3} className={classes.Paper } >
             
             <Typography  variant="h6" color='primary'>测试用例</Typography>
