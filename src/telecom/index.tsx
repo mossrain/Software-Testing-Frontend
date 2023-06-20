@@ -109,6 +109,7 @@ function getLevel(time: number): number {
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setVal(event.target.value as string);
+    setIsVisible(false);
     };
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

@@ -2,13 +2,16 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { InputLabel, NativeSelect, Typography } from '@material-ui/core';
+import { InputLabel, NativeSelect, Typography, Button } from '@material-ui/core';
 import CaseTable1 from './case_table_1';
 import CaseTable2 from './case_table_2';
 import CaseTable3 from './case_table_3';
 import CaseTable4 from './case_table_4';
 import CaseTable5 from './case_table_5';
 import EchartsTest from './echarts_test';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
@@ -86,6 +89,22 @@ function UseCase(props: { value: string }) {
     }
 }
 
+function getCommission(AnnualSales: number, LeaveDays: number, CashtoAccountRate: number): number {
+    if (AnnualSales > 200 && LeaveDays <= 10) {
+        if (CashtoAccountRate >= 0.85)
+            return AnnualSales / 5
+        else
+            return AnnualSales / 6
+    }
+    else {
+        if (CashtoAccountRate >= 0.6)
+            return AnnualSales / 7
+        else
+            return 0
+    }
+
+}
+
 
 export default function Commission() {
     const classes = useStyles();
@@ -94,6 +113,13 @@ export default function Commission() {
     // 定义 parameterMapping 对象的类型
     type ParameterMapping = {
         [key: string]: { caseType: string; passed: number; failed: number };
+    };
+
+    const [isVisible, setIsVisible] = React.useState(false);
+
+    const handleClick = () => {
+        alert("测试完成！请查看测试结果");
+        setIsVisible(true);
     };
 
     // 映射表
@@ -105,10 +131,29 @@ export default function Commission() {
         "5": { caseType: '条件组合覆盖测试结果', passed: 8, failed: 0 },
     };
 
+    // 测试代码
+    const codeString = `function getCommission(AnnualSales: number, LeaveDays: number, CashtoAccountRate: number): number {
+        if (AnnualSales > 200 && LeaveDays <= 10)
+        {
+            if(CashtoAccountRate >= 0.85)
+                return AnnualSales/5
+            else
+                return AnnualSales/6
+        }
+        else{
+            if(CashtoAccountRate >= 0.6)
+                return AnnualSales/7
+            else
+                return 0
+        }
+           
+    }`;
+
     // 根据 val 查找对应的参数
     const mappedParameters = parameterMapping[val];
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setIsVisible(false);
         setVal(event.target.value as string);
     };
 
@@ -142,12 +187,29 @@ export default function Commission() {
                             <option value="5">条件组合覆盖</option>
                         </NativeSelect>
                         <UseCase value={val} />
+                        <br></br>
+                        <Button variant="outlined" color="primary" onClick={handleClick}>
+                            开始测试
+                        </Button>
                     </Paper >
                 </Grid>
                 <Grid item xs={6}>
                     <Paper elevation={3} className={classes.Paper2}>
                         <Typography variant="h6" color='primary'>测试结果</Typography>
-                        <EchartsTest caseType={mappedParameters?.caseType} passedCases={mappedParameters?.passed} failedCases={mappedParameters?.failed} />
+                        {isVisible && <EchartsTest caseType={mappedParameters?.caseType} passedCases={mappedParameters?.passed} failedCases={mappedParameters?.failed} />}
+                        {!isVisible && <Typography><br /><br />请先进行测试</Typography>}
+
+                    </Paper >
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper elevation={3} className={classes.Paper}>
+                        <Typography variant="h6" color='primary'>测试代码</Typography>
+                        <br />
+                        <Typography>
+                            <SyntaxHighlighter language="typescript" style={solarizedlight}>
+                                {codeString}
+                            </SyntaxHighlighter>
+                        </Typography><br />
                     </Paper >
                 </Grid>
                 <Grid item xs={12}>
