@@ -12,6 +12,7 @@ import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import Jcb from './jcb';
 import Bjz from './bjz';
 import DataTable from './data_table';
+import NewDataTable from './datatable_ab';
 // import Alert from '@material-ui/lab/Alert';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,11 +34,13 @@ function UseCase(props: { value: string }) {
         case "1":
             return <div><br/>
             <Typography  style={{ fontWeight: 'bold' }}>边界值测试</Typography>
-            <Typography>对于通话时长的总区间和每个分区间进行边界值测试：-1, 0, 1, 150, 20000, 44639, 44640, 44641</Typography>
-            <Typography>未按时缴费次数：-1, 0, 1, 5, 10, 11, 12</Typography>
-            <br/>
+            <Typography>正常取值：</Typography>
+            
             {/* <Bjz/> */}
             <DataTable/>
+            <br/>
+            <Typography>异常取值：</Typography>
+            <NewDataTable/>
             </div>;
         case "2":
             return <div><br/><Typography  style={{ fontWeight: 'bold' }}>等价类测试</Typography>

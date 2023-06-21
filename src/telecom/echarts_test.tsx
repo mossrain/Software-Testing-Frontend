@@ -13,7 +13,7 @@ const EchartsTest: React.FC<EchartsTestProps> = (props) => {
 
   if (props.value === "1" && text === "") {
     setText("边界值测试");
-    setNum(37);
+    setNum(49);
   } else if(props.value === "2" && text === "") {
     setText("等价类测试");
     setNum(49);
