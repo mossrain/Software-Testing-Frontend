@@ -99,7 +99,7 @@ export default function Telecom() {
     if (callingTime < 0 || callingTime > 31 * 24 * 60) {
         return "通话时长数值越界"
     }
-    if (count < 0 || count > 11) {
+    if (count < 0 || count > 6) {
         return "未按时缴费次数越界"
     }
 

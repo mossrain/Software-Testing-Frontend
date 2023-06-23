@@ -32,7 +32,7 @@ export default function DataTable() {
     { id: 28, calling_time: 304, count: 1, discount: '3.00%', result: '69.232' },
     { id: 29, calling_time: 379, count: 2, discount: '3.00%', result: '80.1445' },
     { id: 30, calling_time: 451, count: 3, discount: '3.00%', result: '90.6205' },
-    { id: 31, calling_time: 503, count: 20, discount: '3.00%', result: '98.1865' },
+    { id: 31, calling_time: 503, count: 6, discount: '3.00%', result: '98.1865' },
     { id: 32, calling_time: 19304, count: 5, discount: '3.00%', result: '2833.732' },
     { id: 33, calling_time: 29487, count: 2, discount: '3.00%', result: '4315.3585' },
     { id: 34, calling_time: 43924, count: 4, discount: '3.00%', result: '6415.942' },
