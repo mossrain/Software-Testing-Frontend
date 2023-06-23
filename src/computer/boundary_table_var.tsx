@@ -8,98 +8,98 @@ import {
   TableBody,
 } from "@material-ui/core";
 
-function BasicBoundaryDataTable() {
+function BasicBoundaryVarTable() {
   const data = [
     {
       host_num: 1,
-      display_num: 1,
-      peripheral_num: 1,
-      sale_amount: 100,
-      result: "10",
+      display_num: 40,
+      peripheral_num: 45,
+      sale_amount: 3250,
+      result: " 650",
     },
     {
       host_num: 2,
-      display_num: 1,
-      peripheral_num: 1,
-      sale_amount: 125,
-      result: "12.5",
-    },
-    {
-      host_num: 5,
-      display_num: 5,
-      peripheral_num: 5,
-      sale_amount: 500,
-      result: "50",
-    },
-    {
-      host_num: 9,
-      display_num: 10,
-      peripheral_num: 10,
-      sale_amount: 975,
-      result: "97.5",
-    },
-    {
-      host_num: 10,
-      display_num: 10,
-      peripheral_num: 10,
-      sale_amount: 1000,
-      result: "100",
-    },
-    {
-      host_num: 11,
-      display_num: 10,
-      peripheral_num: 10,
-      sale_amount: 1025,
-      result: "153.75",
-    },
-    {
-      host_num: 14,
-      display_num: 14,
-      peripheral_num: 14,
-      sale_amount: 1400,
-      result: "210",
-    },
-    {
-      host_num: 17,
-      display_num: 18,
-      peripheral_num: 18,
-      sale_amount: 1775,
-      result: "266.25",
-    },
-    {
-      host_num: 18,
-      display_num: 18,
-      peripheral_num: 18,
-      sale_amount: 1800,
-      result: "270",
-    },
-    {
-      host_num: 19,
-      display_num: 18,
-      peripheral_num: 18,
-      sale_amount: 1825,
-      result: "365",
+      display_num: 40,
+      peripheral_num: 45,
+      sale_amount: 3275,
+      result: " 655",
     },
     {
       host_num: 35,
       display_num: 40,
       peripheral_num: 45,
       sale_amount: 4100,
-      result: "820",
+      result: " 820",
     },
     {
       host_num: 69,
-      display_num: 80,
-      peripheral_num: 90,
-      sale_amount: 8175,
-      result: "1635",
+      display_num: 40,
+      peripheral_num: 45,
+      sale_amount: 4950,
+      result: " 990",
     },
     {
       host_num: 70,
+      display_num: 40,
+      peripheral_num: 45,
+      sale_amount: 4975,
+      result: " 995",
+    },
+    {
+      host_num: 35,
+      display_num: 1,
+      peripheral_num: 45,
+      sale_amount: 2930,
+      result: " 586",
+    },
+    {
+      host_num: 35,
+      display_num: 2,
+      peripheral_num: 45,
+      sale_amount: 2960,
+      result: " 592",
+    },
+    {
+      host_num: 35,
+      display_num: 79,
+      peripheral_num: 45,
+      sale_amount: 5270,
+      result: "  1054",
+    },
+    {
+      host_num: 35,
       display_num: 80,
+      peripheral_num: 45,
+      sale_amount: 5300,
+      result: " 1060",
+    },
+    {
+      host_num: 35,
+      display_num: 40,
+      peripheral_num: 1,
+      sale_amount: 2120,
+      result: " 424",
+    },
+    {
+      host_num: 35,
+      display_num: 40,
+      peripheral_num: 2,
+      sale_amount: 2165,
+      result: "  433",
+    },
+    {
+      host_num: 35,
+      display_num: 40,
+      peripheral_num: 89,
+      sale_amount: 6080,
+      result: "  1216",
+    },
+    {
+      host_num: 35,
+      display_num: 40,
       peripheral_num: 90,
-      sale_amount: 8200,
-      result: "1640",
+      sale_amount: 6120,
+      result: " 1224",
     },
   ];
   return (
@@ -132,4 +132,4 @@ function BasicBoundaryDataTable() {
   );
 }
 
-export default BasicBoundaryDataTable;
+export default BasicBoundaryVarTable;

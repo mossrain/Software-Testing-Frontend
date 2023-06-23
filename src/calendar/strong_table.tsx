@@ -26,7 +26,7 @@ function StrongBoundaryDataTable() {
             <TableCell>年</TableCell>
             <TableCell>月</TableCell>
             <TableCell>日</TableCell>
-            <TableCell>结果</TableCell>
+            <TableCell>下一天</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

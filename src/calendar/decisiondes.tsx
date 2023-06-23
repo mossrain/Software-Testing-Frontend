@@ -14,33 +14,86 @@ export default function DecisionDes() {
             <TableCell>4</TableCell>
             <TableCell>5</TableCell>
             <TableCell>6</TableCell>
+            <TableCell>7</TableCell>
+            <TableCell>8</TableCell>
+            <TableCell>9</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>year</TableCell>
-            <TableCell>y1</TableCell>
-            <TableCell>y1</TableCell>
-            <TableCell>y1</TableCell>
-            <TableCell>y2</TableCell>
-            <TableCell>y2</TableCell>
-            <TableCell>y2</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>y1,y2</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>y1,y2</TableCell>
+            <TableCell>y3</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>/</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>month</TableCell>
+            <TableCell>/</TableCell>
+            <TableCell>m1,m4</TableCell>
+            <TableCell>m3</TableCell>
+            <TableCell>m2</TableCell>
             <TableCell>m1</TableCell>
             <TableCell>m2</TableCell>
-            <TableCell>m3</TableCell>
-            <TableCell>m1</TableCell>
             <TableCell>m2</TableCell>
             <TableCell>m3</TableCell>
+            <TableCell>m4</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>day</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
-            <TableCell>d1,d2,d3,d4,d5</TableCell>
+            <TableCell>d1</TableCell>
+            <TableCell>d1,d2,d3,d4</TableCell>
+            <TableCell>d1,d2,d3</TableCell>
+            <TableCell>d1,d2</TableCell>
+            <TableCell>d5</TableCell>
+            <TableCell>d3</TableCell>
+            <TableCell>d2</TableCell>
+            <TableCell>d4</TableCell>
+            <TableCell>d5</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>A1:day+1</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>A2:day=1,month+1</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell>√</TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>A3:day=1
+month=1
+year+1</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell>√</TableCell>
           </TableRow>
         </TableHead>
       </Table>

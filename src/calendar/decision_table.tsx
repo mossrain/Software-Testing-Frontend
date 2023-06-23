@@ -10,45 +10,15 @@ import {
 
 function DecisionTable() {
   const data = [
-
-    { y: 2000, m: 1, d: 15, result: "输入日期存在" },
-    { y: 2000, m: 1, d: 28, result: "输入日期存在" },
-    { y: 2000, m: 1, d: 29, result: "输入日期存在" },
-    { y: 2000, m: 1, d: 30, result: "输入日期存在" },
-    { y: 2000, m: 1, d: 31, result: "输入日期存在" },
-
-
-    { y: 2000, m: 2, d: 15, result: "输入日期存在" },
-    { y: 2000, m: 2, d: 28, result: "输入日期存在" },
-    { y: 2000, m: 2, d: 29, result: "输入日期存在" },
-    { y: 2000, m: 2, d: 30, result: "输入日期不存在" },
-    { y: 2000, m: 2, d: 31, result: "输入日期不存在" },
-
-    { y: 2000, m: 4, d: 15, result: "输入日期存在" },
-    { y: 2000, m: 4, d: 28, result: "输入日期存在" },
-    { y: 2000, m: 4, d: 29, result: "输入日期存在" },
-    { y: 2000, m: 4, d: 30, result: "输入日期存在" },
-    { y: 2000, m: 4, d: 31, result: "输入日期不存在" },
-
-    { y: 2001, m: 1, d: 15, result: "输入日期存在" },
-    { y: 2001, m: 1, d: 28, result: "输入日期存在" },
-    { y: 2001, m: 1, d: 29, result: "输入日期存在" },
-    { y: 2001, m: 1, d: 30, result: "输入日期存在" },
-    { y: 2001, m: 1, d: 31, result: "输入日期存在" },
-
-
-    { y: 2001, m: 2, d: 15, result: "输入日期存在" },
-    { y: 2001, m: 2, d: 28, result: "输入日期存在" },
-    { y: 2001, m: 2, d: 29, result: "输入日期不存在" },
-    { y: 2001, m: 2, d: 30, result: "输入日期不存在" },
-    { y: 2001, m: 2, d: 31, result: "输入日期不存在" },
-
-    { y: 2001, m: 4, d: 15, result: "输入日期存在" },
-    { y: 2001, m: 4, d: 28, result: "输入日期存在" },
-    { y: 2001, m: 4, d: 29, result: "输入日期存在" },
-    { y: 2001, m: 4, d: 30, result: "输入日期存在" },
-    { y: 2001, m: 4, d: 31, result: "输入日期不存在" },
-
+    { y: 2015, m: 3, d: 27, result: "day+1" },
+    { y: 2016, m: 12, d: 16, result: "day+1" },
+    { y: 2002, m: 4, d: 20, result: "day+1" },
+    { y: 2012, m: 2, d: 28, result: "day+1" },
+    { y: 2015, m: 1, d: 31, result: "day=1,month+1" },
+    { y: 2016, m: 2, d: 29, result: "day=1,month+1" },
+    { y: 2017, m: 2, d: 28, result: "day=1,month+1" },
+    { y: 2016, m: 4, d: 30, result: "day=1,month+1" },
+    { y: 2016, m: 12, d: 31, result: "day=1,month=1，year+1" },
   ];
   return (
     <TableContainer component={Paper} style={{ maxHeight: 500 }}>
@@ -59,7 +29,7 @@ function DecisionTable() {
             <TableCell>年</TableCell>
             <TableCell>月</TableCell>
             <TableCell>日</TableCell>
-            <TableCell>结果</TableCell>
+            <TableCell>动作</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

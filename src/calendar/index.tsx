@@ -40,7 +40,7 @@ function UseCase(props: { value: string }) {
           <Typography style={{ fontWeight: "bold" }}>基本边界值测试</Typography>
           <Typography>
             年份（y）和月份（m）两个变量分别取最小值、稍大于最小值的值、中间值、稍小于最大值的值、最大值5个值，有4n+1 =
-            9个测试用例。而日期（d）的最大值有四个，有8个测试用例。一共8+9=17个测试用例。设计的基本边界值测试如下：
+            9个测试用例。而日期（d）的最大值有四个，有8个测试用例。一共8+9=17个测试用例。设计的基本边界值和我们补充覆盖的测试用例如下：
           </Typography>
           <br />
           {/* <Bjz/> */}
@@ -83,9 +83,9 @@ function UseCase(props: { value: string }) {
               决策表由四部分组成：条件桩--列出问题的所有条件、条件项--针对条件桩给出的条件列出所有可能的取值、
               动作桩--列出问题所规定的可能采取的操作、动作项--指出在条件项的各组取值情况下应采取的动作
               <br />
-              year有三种情况：y1:year是闰年、y2:year是平年
+              year： y1：year%400==0，y2:year%4==0 && year%100!=0，y3 ：平年 
               <br />
-              month根据所含天数可分为：m1:[1,3,5,7,8,10,12]、m2:[2]、m3:[4,6,9,11]
+              month: m1 : [1,3,5,7,8,10] m2 : [2] m3 : [4,6,9,11] m4 : [12] 
               <br />
               day根据月份的天数可以划分为:d1:[1~27]、d2:[28]、d3:[29]、d4:[30]、d5:[31]
               <br />
@@ -112,34 +112,6 @@ export default function Triangle() {
   const classes = useStyles();
   const [val, setVal] = React.useState("1");
   const [isVisible, setIsVisible] = React.useState(false);
-
-  const code = `function calendarTest(y: number, m: number, d: number): string {
-    var flag = false;
-    if (y < 1900 || y > 2100) return "年份超出范围";
-    if (m < 1 || y > 12) return "月份超出范围";
-    if (d < 1 || d > 31) return "日期超出范围";
-    // // 判断闰年
-    if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) flag = true;
-    else flag = false;
-    // 对二月单独判断
-    if (flag == true) {
-      if (m == 2) {
-        if (d > 29) return "输入日期不存在";
-      }
-    } else {
-      if (m == 2) {
-        if (d > 28) return "输入日期不存在";
-      }
-    }
-    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
-      if (d > 31) return "输入日期不存在";
-    }
-    if (m == 4 || m == 6 || m == 9 || m == 11) {
-      if (d > 30) return "输入日期不存在";
-    }
-    return "输入日期存在";
-  }`;
-
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setVal(event.target.value as string);
   };
@@ -217,17 +189,6 @@ export default function Triangle() {
               </Grid>
             </Grid>
             <UseCase value={val} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper elevation={3} className={classes.Paper}>
-            <Typography variant="h6" color="primary">
-              测试代码
-            </Typography>
-            <br />
-            <SyntaxHighlighter language="typescript" style={solarizedlight}>
-              {code}
-            </SyntaxHighlighter>
           </Paper>
         </Grid>
         <Grid item xs={6}>

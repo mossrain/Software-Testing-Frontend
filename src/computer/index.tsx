@@ -11,7 +11,9 @@ import {
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import BoundaryDataTable from "./boundary_table";
+import BasicBoundaryVarTable from "./boundary_table_var";
 import EchartsTest from "./echart_test";
+import StrongBasicBoundaryDataTable from "./strong_table";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,11 +32,19 @@ function UseCase(props: { value: string }) {
   switch (props.value) {
     case "1":
       return (
-        <div>
+        <div style={{ maxHeight: '600px', overflow: 'auto' }}>
           <br />
-          <Typography style={{ fontWeight: "bold" }}>边界值测试用例</Typography>
+          <Typography style={{ fontWeight: "bold" }}>考虑销售总额</Typography>
           <br />
           <BoundaryDataTable />
+          <br />
+          <Typography style={{ fontWeight: "bold" }}>考虑输入变量边界</Typography>
+          <br />
+          <BasicBoundaryVarTable />
+          <br />
+          <Typography style={{ fontWeight: "bold" }}>考虑健壮性</Typography>
+          <br />
+          < StrongBasicBoundaryDataTable/>
         </div>
       );
     default:
@@ -51,28 +61,6 @@ export default function Triangle() {
   const classes = useStyles();
   const [val, setVal] = React.useState("1");
   const [isVisible, setIsVisible] = React.useState(false);
-
-  const code = `function computerTest(host_num: number, display_num: number, peripheral_num: number): string {
-    // 当销售额小于等于1000（包括1000）按照10%提佣金，当销售额在1000-1800之间（包括1800）的时候按照15%提佣金， 
-    // 当销售额大于1800时按照20%提佣金。
-  
-    var sale_amount=0   //销售额
-    var commission=0    //佣金
-  
-    if(host_num==-1)return "自动统计本月销售总额"  
-    if(host_num*display_num*peripheral_num==0)return "未卖出一台完整机器"
-    if(host_num<1||host_num>70) return "主机数量超出限制"
-    if(display_num<1||display_num>80) return "显示器数量超出限制"
-    if(peripheral_num<1||peripheral_num>90) return "外设数量超出限制"
-  
-    sale_amount=25*host_num+display_num*30+45*peripheral_num
-  
-    if(sale_amount<=1000)commission=0.1*sale_amount
-    if(sale_amount<=1800&&sale_amount>1000)commission=0.15*sale_amount
-    if(sale_amount>=1800)commission=0.2*sale_amount
-    
-    return commission.toString()
-  }`;
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setVal(event.target.value as string);
@@ -118,17 +106,11 @@ export default function Triangle() {
               <Typography style={{ fontWeight: "bold" }}>分析</Typography>
               在本题中，测试用例的输入变量有主机销售数量x范围为[1,70]、显示器销售数量y范围为[1,80]、外设销售数量z范围为[1,90]，测试输出有员工佣金、员工本月销售总额。
               <br></br>
-              如果采用边界值分析，对x、y、z分别取min，min+，normal，max-，max。得到三个取值集合：
-              <br></br>
-              <br></br>
-              x:[1,2,40,69,70], y:[1,2,40,79,80], z:[1,2,40,89,90]
-              <br></br>
-              <br></br>
-              再增加健壮性分析：每个集合再分别增加min-,max+可得：
-              <br></br>
-              x:[0,1,2,40,69,70,71], y:[0,1,2,40,79,80,81], z:[0,1,2,40,89,90,91]
-              <br></br>
-              共有6*3+1=19个测试用例,再加上当x=-1时输出员工当月销售总额，所以共有20个测试用例。
+              不同的销售额所提佣金的百分比不同，因此我们将销售总额（即输出结果）的边界值加入到讨论中。
+可算得销售额上限为2570+3080+45*90 = 8200。
+<br></br>
+我们考虑销售总额的边界、只考虑输入变量边界、考虑健壮性
+
             </Typography>
           </Paper>
         </Grid>
@@ -153,17 +135,6 @@ export default function Triangle() {
               </Grid>
             </Grid>
             <UseCase value={val} />
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper elevation={3} className={classes.Paper}>
-            <Typography variant="h6" color="primary">
-              测试代码
-            </Typography>
-            <br />
-            <SyntaxHighlighter language="typescript" style={solarizedlight}>
-              {code}
-            </SyntaxHighlighter>
           </Paper>
         </Grid>
         <Grid item xs={6}>
